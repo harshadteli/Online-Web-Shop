@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS | Create Account</title>
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #0f0f0f;
+            --light-gray: #f9f9f9;
+            --text-main: #1a1a1a;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            /* Background image and overlay */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=1300&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            color: var(--dark-bg);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #eee;
+            background-color: var(--light-gray);
+            border-radius: 0;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--primary-gold);
+            background-color: #fff;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--dark-bg);
+            color: white;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-top: 15px;
+        }
+
+        .register-btn:hover {
+            background: var(--primary-gold);
+            transform: translateY(-2px);
+        }
+
+        .links {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .links a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-container">
+        <div class="logo">SWAMI</div>
+        <h2>Create an Account</h2>
+        <p class="subtitle">Join our exclusive circle of watch enthusiasts.</p>
+
+        <form id="register-form">
+            <div class="form-group">
+                <label for="username">Full Name</label>
+                <input type="text" id="username" name="username" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="email@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeat password"
+                    required>
+            </div>
+
+            <button type="submit" class="register-btn">Register Now</button>
+        </form>
+
+        <script>
+            document.getElementById('register-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match!");
+                    return;
+                }
+
+                let users = JSON.parse(localStorage.getItem('swamiUsers')) || [];
+
+                if (users.some(user => user.email === email)) {
+                    alert("Email already registered!");
+                    return;
+                }
+
+                users.push({ name, email, password });
+                localStorage.setItem('swamiUsers', JSON.stringify(users));
+
+                alert("Registration successful! Redirecting to login...");
+                window.location.href = "Login.html";
+            });
+        </script>
+
+        <div class="links">
+            Already have an account? <a href="Login.html">Sign In</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Details | SWAMI</title>
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark: #0f0f0f;
+            --light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .info-box {
+            background: white;
+            width: 95%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        p.subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .next-btn {
+            width: 100%;
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .next-btn:hover {
+            background: var(--gold);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #666;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="info-box">
+        <h2>Shipping Info</h2>
+        <p class="subtitle">Enter your details for order delivery</p>
+
+        <form action="payment.html" method="GET" id="delivery-form">
+
+            <div class="input-group">
+                <label>Full Name (Full Name)</label>
+                <input type="text" name="customer_name" id="name" placeholder="Full Name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Mobile Number (Mobile Number)</label>
+                <input type="tel" name="phone" id="phone" placeholder="10 Digits" maxlength="10" pattern="[0-9]{10}"
+                    required>
+            </div>
+
+            <div class="input-group">
+                <label>Full Address (Full Address)</label>
+                <textarea name="address" id="address" rows="3" placeholder="House No,Lane,Area..." required></textarea>
+            </div>
+
+            <div class="row">
+                <div class="input-group" style="flex: 1;">
+                    <label>City (City)</label>
+                    <input type="text" name="city" id="city" placeholder="e.g. Pune" required>
+                </div>
+                <div class="input-group" style="flex: 1;">
+                    <label>Pincode (Pincode)</label>
+                    <input type="text" name="pincode" id="pincode" placeholder="411001" maxlength="6" pattern="[0-9]{6}"
+                        required>
+                </div>
+            </div>
+
+            <button type="submit" class="next-btn">Proceed to Payment</button>
+            <a href="Cart.html" class="back-link">← Back to cart</a>
+        </form>
+    </div>
+
+    <script>
+        // Saving form data to LocalStorage on submission
+        // Saving form data to LocalStorage on submission
+        document.getElementById('delivery-form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent default submission
+
+            const customerData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                pincode: document.getElementById('pincode').value
+            };
+
+            localStorage.setItem('swamiDeliveryInfo', JSON.stringify(customerData));
+
+            // Redirect to payment page
+            window.location.href = "payment.html";
+        });
+    </script>
+
+</body>
+
+</html>

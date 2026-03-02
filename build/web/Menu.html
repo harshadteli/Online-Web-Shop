@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection | SWAMI Premium Timepieces</title>
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #0f0f0f;
+            --text-main: #1a1a1a;
+            --text-muted: #666;
+            --light-bg: #fcfcfc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* MENU HEADER */
+        .menu-header {
+            text-align: center;
+            padding: 80px 8% 40px;
+        }
+
+        .menu-header h1 {
+            font-size: 3rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 200;
+            margin-bottom: 20px;
+        }
+
+        /* COLLECTION GRID */
+        .collection-container {
+            padding: 0 8% 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .watch-card {
+            background: white;
+            text-align: center;
+            transition: 0.4s;
+            position: relative;
+            padding-bottom: 30px;
+            border: 1px solid #eee;
+        }
+
+        .watch-card:hover {
+            transform: translateY(-5px);
+            border: 1px solid var(--primary-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .img-box {
+            background: #f7f7f7;
+            margin-bottom: 20px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+        }
+
+        .watch-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+
+        .watch-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-gold);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+        .watch-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .watch-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0 20px 15px;
+            min-height: 40px;
+        }
+
+        .price-container {
+            color: var(--primary-gold);
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        /* BUTTON STYLE */
+        .cart-btn {
+            background: var(--dark-bg);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 80%;
+        }
+
+        .cart-btn:hover {
+            background: var(--primary-gold);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 60px 8%;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">SWAMI</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Menu.html" style="color: var(--primary-gold);">Collection</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="Cart.html">Cart</a></li>
+        </ul>
+    </nav>
+
+    <header class="menu-header">
+        <h1>Our Collection</h1>
+    </header>
+
+    <section class="collection-container" id="product-grid">
+        <!-- Products will be loaded here via JavaScript -->
+    </section>
+
+    <script>
+        // Initial Product Data (Seeding)
+        const initialProducts = [
+            {
+                name: "Silver Round SmartWatch",
+                price: 4500.00,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+                desc: "Touch screen fitness tracking heart rate monitor.",
+                tag: "New Arrival"
+            },
+            {
+                name: "Midnight Leather",
+                price: 500.00,
+                image: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=600&q=80",
+                desc: "Genuine Italian leather with obsidian dial.",
+                tag: ""
+            },
+            {
+                name: "Citizen",
+                price: 18000.00,
+                image: "https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=600&q=80",
+                desc: "Time that powers itself.",
+                tag: ""
+            },
+            {
+                name: "Digital Watch",
+                price: 3000.00,
+                image: "Img/digital1.jpg",
+                desc: "Water resistant 200m, luminescent hands.",
+                tag: "Limited"
+            },
+            {
+                name: "Eternia classic",
+                price: 15200.00,
+                image: "Img/classic6.avif",
+                desc: "Stainless steel case(silver finish).",
+                tag: "New Arrival"
+            },
+            {
+                name: "YAZOLE",
+                price: 1200.00,
+                image: "Img/luxury4.webp",
+                desc: "Elegant quartz watch with a sleek metal strap.",
+                tag: "New Arrival"
+            }
+        ];
+
+        // Load Products
+        function loadProducts() {
+            let products = JSON.parse(localStorage.getItem('swamiProducts'));
+
+            // Initial Seeding
+            if (!products || products.length === 0) {
+                products = initialProducts;
+                localStorage.setItem('swamiProducts', JSON.stringify(products));
+            }
+
+            const grid = document.getElementById('product-grid');
+
+            // Filter out hidden products
+            const visibleProducts = products.filter(p => !p.hidden);
+
+            if (visibleProducts.length === 0) {
+                grid.innerHTML = "<p style='text-align:center; grid-column: 1 / -1;'>No products available at the moment.</p>";
+                return;
+            }
+
+            grid.innerHTML = visibleProducts.map((product, index) => `
+                <div class="watch-card">
+                    ${product.tag ? `<span class="tag">${product.tag}</span>` : ''}
+                    <div class="img-box">
+                        <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/300x400?text=No+Image'">
+                    </div>
+                    <div class="watch-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.desc}</p>
+                        <div class="price-container">₹ <span class="price">${product.price.toFixed(2)}</span></div>
+                        <button class="cart-btn" onclick="addToCart('${product.name.replace(/'/g, "\\'")}')">Add to cart</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Check Login Status on Load
+        function checkLoginStatus() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const navLinks = document.querySelector('.nav-links');
+
+            if (currentUser) {
+                // Add User Name to Nav
+                const userItem = document.createElement('li');
+                userItem.innerHTML = `<a href="#" style="color: green; font-weight: bold;">Hi, ${currentUser.name}</a>`;
+                navLinks.appendChild(userItem);
+
+                // Optional: Add Logout
+                const logoutItem = document.createElement('li');
+                logoutItem.innerHTML = `<a href="#" onclick="logout()">Logout</a>`;
+                navLinks.appendChild(logoutItem);
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
+
+        // Add to Cart Logic (updated to use name lookup since index changes with filtering)
+        function addToCart(productName) {
+            // CHECK LOGIN STATUS
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                alert("Please Login first to add items to cart!");
+                window.location.href = "Login.html";
+                return;
+            }
+
+            let products = [];
+            try {
+                products = JSON.parse(localStorage.getItem('swamiProducts'));
+            } catch (e) {
+                console.error("Error reading products", e);
+            }
+
+            if (!products) {
+                alert("System Error: Product list not found. Please refresh the page.");
+                return;
+            }
+
+            const product = products.find(p => p.name === productName);
+
+            if (!product) {
+                alert("Error: Product not found!");
+                return;
+            }
+
+            let cart = JSON.parse(localStorage.getItem('swamiCart')) || [];
+
+            const existingItem = cart.find(item => item.name === product.name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1
+                });
+            }
+
+            localStorage.setItem('swamiCart', JSON.stringify(cart));
+            alert(product.name + " added to cart!");
+        }
+
+        window.onload = function () {
+            loadProducts();
+            checkLoginStatus();
+        };
+    </script>
+
+    <footer>
+        <p>&copy; 2026 SWAMI TIMEPIECES. ALL RIGHTS RESERVED.</p>
+        <div style="margin-top: 15px;">
+            <a href="admin.html"
+                style="color: #d4af37; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.6;">
+                ADMIN LOGIN
+            </a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

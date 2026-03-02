@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact SWAMI | Personal Consultation</title>
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #0f0f0f;
+            --text-main: #1a1a1a;
+            --text-muted: #666;
+            --input-bg: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: var(--text-main);
+        }
+
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* CONTACT CONTAINER */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+            padding: 80px 8%;
+            gap: 100px;
+        }
+
+        .contact-info h1 {
+            font-size: 2.5rem;
+            font-weight: 200;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        /* STATUS MESSAGE BOX (Step 4 CSS) */
+        #statusAlert {
+            display: none;
+            padding: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 1px solid var(--primary-gold);
+            background-color: #fffdf5;
+            color: var(--primary-gold);
+        }
+
+        /* FORM STYLING */
+        .contact-form {
+            background: white;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #eee;
+            background: var(--input-bg);
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--dark-bg);
+            color: white;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-gold);
+        }
+
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 40px 8%;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 968px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">SWAMI</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Menu.html">Menu</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="contact-container">
+        <section class="contact-info">
+            <h1>Get in Touch</h1>
+            <p>Our horological experts are here to assist you with your luxury timepiece inquiries.</p>
+
+            <div class="info-details">
+                <div class="info-item">
+                    <h4>Boutique Address</h4>
+                    <p>123 Luxury Row, Geneva, Switzerland</p>
+                </div>
+                <div class="info-item">
+                    <h4>Email Inquiries</h4>
+                    <p>concierge@swami-watches.com</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-form">
+            <div id="statusAlert"></div>
+
+            <form id="contact-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="c-name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="c-email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" id="c-subject" placeholder="Service / Purchase / Inquiry">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="c-message" rows="5" placeholder="How can we assist you?" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('c-name').value;
+            const email = document.getElementById('c-email').value;
+            const subject = document.getElementById('c-subject').value;
+            const message = document.getElementById('c-message').value;
+            const date = new Date().toLocaleString();
+
+            const inquiry = {
+                id: 'MSG-' + Math.floor(Math.random() * 10000),
+                name, email, subject, message, date
+            };
+
+            let inquiries = JSON.parse(localStorage.getItem('swamiInquiries')) || [];
+            inquiries.push(inquiry);
+            localStorage.setItem('swamiInquiries', JSON.stringify(inquiries));
+
+            // Show Success Alert
+            const alertBox = document.getElementById('statusAlert');
+            alertBox.style.display = 'block';
+            alertBox.style.color = '#27ae60';
+            alertBox.style.borderColor = '#27ae60';
+            alertBox.style.backgroundColor = '#eafaf1';
+            alertBox.innerText = 'Thank you! Your message has been sent successfully.';
+
+            document.getElementById('contact-form').reset();
+        });
+    </script>
+    <footer>
+        <p>&copy; 2026 SWAMI TIMEPIECES. ALL RIGHTS RESERVED.</p>
+        <div style="margin-top: 15px;">
+            <a href="admin.html"
+                style="color: #d4af37; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.6;">
+                ADMIN LOGIN
+            </a>
+        </div>
+    </footer>
+</body>
+
+</html>

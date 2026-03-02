@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Selection | SWAMI Premium Timepieces</title>
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #0f0f0f;
+            --text-main: #1a1a1a;
+            --text-muted: #666;
+            --light-bg: #fcfcfc;
+            --border-color: #eeeeee;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-main);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        /* Cart Layout */
+        .cart-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .cart-title {
+            grid-column: 1 / -1;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 200;
+        }
+
+        .cart-items {
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .item-info h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .item-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #cc0000;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            text-decoration: underline;
+        }
+
+        /* Summary */
+        .order-summary {
+            background: white;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-title {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--dark-bg);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--dark-bg);
+            color: white;
+            border: none;
+            padding: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: var(--primary-gold);
+        }
+
+        @media (max-width: 850px) {
+            .cart-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="Menu.html" class="logo">SWAMI</a>
+    </nav>
+
+    <div class="cart-wrapper">
+        <h1 class="cart-title">Your Cart</h1>
+
+        <div id="cart-display" class="cart-items">
+        </div>
+
+        <aside class="order-summary">
+            <h2 class="summary-title">Order Details</h2>
+            <div class="summary-row">
+                <p> Delivery: <strong>Free</strong></p>
+            </div>
+            <div class="total-row">
+                <span>Total</span>
+                <span id="final-amount">₹0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="proceedToPayment()">Fill in delivery information</button>
+        </aside>
+    </div>
+
+    <script>
+        // १. Retrieve and display data from LocalStorage
+        function renderCart() {
+            let cart = [];
+            try {
+                cart = JSON.parse(localStorage.getItem('swamiCart')) || [];
+            } catch (e) {
+                console.error("Cart data corrupted", e);
+                cart = [];
+                // Optional: clear corrupted data
+                // localStorage.removeItem('swamiCart');
+            }
+
+            const displayArea = document.getElementById('cart-display');
+            let total = 0;
+
+            if (cart.length === 0) {
+                displayArea.innerHTML = `
+                    <div style="padding: 40px 0; text-align: center;">
+                        <p>Your cart is empty.</p>
+                        <a href="Menu.html" style="color: var(--primary-gold); text-decoration: none;">Start Shopping</a>
+                    </div>`;
+                document.getElementById('final-amount').innerText = "₹0.00";
+                return;
+            }
+
+            let html = '';
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                html += `
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <h3>${item.name}</h3>
+                            <p>Price: ₹${item.price.toFixed(2)} | Quantity: ${item.quantity}</p>
+                            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                        </div>
+                        <div class="item-price">
+                            <strong>₹${itemTotal.toFixed(2)}</strong>
+                        </div>
+                    </div>
+                `;
+            });
+
+            displayArea.innerHTML = html;
+            document.getElementById('final-amount').innerText = `₹${total.toFixed(2)}`;
+        }
+
+        // 2. Remove item
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('swamiCart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('swamiCart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        // 3. Go to delivery page (404 Error Fix)
+        function proceedToPayment() {
+            const cart = JSON.parse(localStorage.getItem('swamiCart')) || [];
+            if (cart.length === 0) {
+                alert("Please add something to your cart first!");
+                return;
+            }
+            // Make sure that delivery.html is outside (in the Web Pages folder)
+            window.location.href = "delivery.html";
+        }
+
+        // Run on page load
+        window.onload = renderCart;
+    </script>
+</body>
+
+</html>
