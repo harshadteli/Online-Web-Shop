@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About SWAMI | Our Heritage</title>
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #0f0f0f;
+            --text-main: #1a1a1a;
+            --text-muted: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li { margin: 0 20px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ABOUT HERO */
+        .about-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('Img/Back.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 200;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        /* CONTENT SECTION */
+        .content-section {
+            padding: 100px 15%;
+            text-align: center;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* CRAFTSMANSHIP GRID */
+        .craft-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 60px 8%;
+            background: #fff;
+        }
+
+        .craft-img img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .craft-text {
+            text-align: left;
+            padding: 40px;
+        }
+
+        .craft-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 40px 8%;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-top: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .craft-grid { grid-template-columns: 1fr; }
+            .content-section { padding: 60px 8%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">SWAMI</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Menu.html">Menu</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="about-hero">
+        <h1>Our Story</h1>
+    </header>
+
+    <section class="content-section">
+        <h2>Defining Time Since 1994</h2>
+        <p>
+            At SWAMI, we believe a watch is more than a tool for telling time—it is a legacy on your wrist. 
+            Founded on the principles of precision and timeless elegance, our workshop has dedicated 
+            decades to perfecting the art of horology.
+        </p>
+        <p>
+            Each timepiece is meticulously assembled by master watchmakers, ensuring that every gear, 
+            spring, and dial meets our rigorous standards of excellence.
+        </p>
+    </section>
+
+    <section class="craft-grid">
+        <div class="craft-img">
+            <img src="https://images.unsplash.com/photo-1585123334904-845d60e97b29?auto=format&fit=crop&w=800&q=80" alt="Craftsmanship">
+        </div>
+        <div class="craft-text">
+            <h3>Master Craftsmanship</h3>
+            <p>
+                Our artisans combine traditional Swiss techniques with modern engineering. From the 
+                hand-stitched leather straps to the scratch-resistant sapphire crystals, no detail is 
+                too small to be overlooked.
+            </p>
+            <br>
+            <p>
+                We source only the finest materials globally, ensuring that your SWAMI watch remains 
+                a functional piece of art for generations to come.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+    <p>&copy; 2026 SWAMI TIMEPIECES. ALL RIGHTS RESERVED.</p>
+    <div style="margin-top: 15px;">
+        <a href="admin.html" style="color: #d4af37; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.6;">
+            ADMIN LOGIN
+        </a>
+    </div>
+</footer>
+</body>
+</html>

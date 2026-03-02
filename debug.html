@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Debug Storage</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+        }
+
+        .item {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        pre {
+            background: #f0f0f0;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #333;
+            color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>LocalStorage Debugger</h1>
+    <button onclick="location.reload()">Refresh Data</button>
+    <div id="output"></div>
+
+    <script>
+        const output = document.getElementById('output');
+
+        function render() {
+            output.innerHTML = '';
+            if (localStorage.length === 0) {
+                output.innerHTML = '<p>Local Storage is EMPTY.</p>';
+                return;
+            }
+
+            // Keys to check specifically
+            const keys = ['swamiOrders', 'swamiProducts', 'swamiCart', 'swamiDeliveryInfo', 'swamiUsers'];
+
+            keys.forEach(key => {
+                const data = localStorage.getItem(key);
+                const div = document.createElement('div');
+                div.className = 'item';
+                let displayData = 'NULL (Not set)';
+
+                if (data) {
+                    try {
+                        const parsed = JSON.parse(data);
+                        displayData = JSON.stringify(parsed, null, 2);
+                    } catch (e) {
+                        displayData = data + ' (INVALID JSON)';
+                    }
+                }
+
+                div.innerHTML = `<h2>${key}</h2><pre>${displayData}</pre>`;
+                output.appendChild(div);
+            });
+        }
+        render();
+    </script>
+</body>
+
+</html>

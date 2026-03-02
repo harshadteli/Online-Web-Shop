@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS | Premium Watch Store</title>
+    <style>
+        /* CSS VARIABLES FOR EASY EDITING */
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #0f0f0f;
+            --card-bg: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: var(--text-main);
+        }
+
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('Img/Back.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            letter-spacing: 10px;
+            margin-bottom: 20px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid white;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: 0.4s;
+        }
+
+        .hero-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        /* PRODUCT GRID */
+        .container {
+            padding: 80px 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        /* PRODUCT CARD */
+        .product-card {
+            background: white;
+            padding: 0 0 20px 0;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .product-card:hover {
+            border-color: #eee;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+
+        .img-container {
+            background: #f7f7f7;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-card h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .price {
+            color: var(--primary-gold);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .add-btn {
+            background: none;
+            border: 1px solid #333;
+            padding: 8px 25px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover {
+            background: #333;
+            color: white;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 40px 8%;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SWAMI</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Menu.html">Menu</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="contact.html">contact</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cart.html">Cart</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>SWAMI</h1>
+            <a href="Menu.html" class="hero-btn">VIEW COLLECTION</a>
+        </div>
+    </header>
+
+    <main class="container" id="collection">
+        <div class="section-header">
+            <h2>The New Arrivals</h2>
+        </div>
+
+        <div class="grid">
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" alt="Watch 1">
+                </div>
+                <h3>Grand Classic Silver</h3>
+                
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=600&q=80" alt="Watch 2">
+                </div>
+                <h3>Midnight Leather</h3>
+               
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=600&q=80" alt="Watch 3">
+                </div>
+                <h3>Golden Executive</h3>
+                            </div>
+        </div>
+    </main>
+
+    
+    <footer>
+    <p>&copy; 2026 SWAMI TIMEPIECES. ALL RIGHTS RESERVED.</p>
+    <div style="margin-top: 15px;">
+        <a href="admin.html" style="color: #d4af37; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.6;">
+            ADMIN LOGIN
+        </a>
+    </div>
+</footer>
+
+</body>
+</html>
